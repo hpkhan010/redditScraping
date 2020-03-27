@@ -1,4 +1,5 @@
 import nltk
+import numpy
 
 # nltk.download()
 
@@ -46,21 +47,23 @@ for line in posts["title"]:
     results.append(pol_score)
 
 
-print(results)
+# print(results)
 
 df = pd.DataFrame.from_records(results)
-df.head()
+# df.head()
 
 # labelling dataset
 df["label"] = 0
 df.loc[df["compound"] >= 0.2, "label"] = 1
 df.loc[df["compound"] < 0.2, "label"] = -1
-df.head()
+# print(df.head())
 
 # printing sample of positive posts
+print("Sample of Positive Posts")
 print(list(df[df["label"] == 1].Post)[:5])
 
 # printing sample of negative posts
+print("Sample of Negative Posts")
 print(list(df[df["label"] == -1].Post)[:5])
 
 # Word Distributions
@@ -120,6 +123,3 @@ plt.xlabel("Words")
 plt.ylabel("Frequency")
 plt.title("Word Frequency Distribution (Negative)")
 plt.show()
-
-
-# Pulling sample of comments
